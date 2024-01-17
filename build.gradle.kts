@@ -1,3 +1,4 @@
+import org.jetbrains.kotlin.gradle.plugin.KotlinSourceSet
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
@@ -41,4 +42,18 @@ tasks.withType<KotlinCompile> {
 
 tasks.withType<Test> {
 	useJUnitPlatform()
+}
+
+sourceSets {
+	test {
+		/*
+		withConvention(KotlinSourceSet::class){
+			kotlin.setSrcDirs((listOf("src/test/intg", "src/test/unit")))
+		}
+		*/
+
+		java {
+			setSrcDirs((listOf("src/test/intg", "src/test/unit")))
+		}
+	}
 }
