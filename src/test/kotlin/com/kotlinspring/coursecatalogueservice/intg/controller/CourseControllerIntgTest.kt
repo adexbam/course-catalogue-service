@@ -95,5 +95,20 @@ class CourseControllerIntgTest {
 
     }
 
+    @Test
+    fun deleteCourse() {
+
+        val courseEntity = Course(null,
+            "Build Restful APIs using SpringBoot and SpringBoot", "Development")
+
+        courseRepository.save(courseEntity)
+        webTestClient
+            .delete()
+            .uri("/v1/courses/{courseId}", courseEntity.id)
+            .exchange()
+            .expectStatus().isNoContent
+
+    }
+
 
 }
