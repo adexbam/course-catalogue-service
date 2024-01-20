@@ -13,7 +13,7 @@ class CourseService(val courseRepository: CourseRepository) {
     fun addCourse(courseDTO: CourseDTO) : CourseDTO {
 
         val courseEntity = courseDTO.let {
-            Course(null,it.name, it .category)
+            Course(null,it.name, it.category)
         }
         courseRepository.save(courseEntity)
 
