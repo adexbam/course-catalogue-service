@@ -3,7 +3,6 @@ package com.kotlinspring.coursecatalogueservice.controller
 import com.kotlinspring.coursecatalogueservice.dto.CourseDTO
 import com.kotlinspring.coursecatalogueservice.service.CourseService
 import org.springframework.http.HttpStatus
-import org.springframework.stereotype.Service
 import org.springframework.web.bind.annotation.*
 
 @RestController
@@ -17,8 +16,9 @@ class CourseController (val courseService: CourseService) {
     }
 
     @GetMapping
-    fun retrieveAllCourses() {
-        println("courses")
+    @ResponseStatus(HttpStatus.OK)
+    fun retrieveAllCourses() : List<CourseDTO> {
+        return courseService.retrieveAllCourses()
     }
 
 
