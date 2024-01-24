@@ -7,6 +7,8 @@ import com.kotlinspring.coursecatalogueservice.service.CourseService
 import com.ninjasquad.springmockk.MockkBean
 import courseDTO
 import io.mockk.every
+import io.mockk.just
+import io.mockk.runs
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
@@ -107,6 +109,18 @@ class CourseControllerUnitTest {
 
     }
 
+    @Test
+    fun deleteCourse() {
 
+        every { courseServiceMock.deleteCourse(any()) } just runs
+
+        webTestClient
+            .delete()
+            .uri("/v1/courses/{courseId}", 100)
+            .exchange()
+            .expectStatus().isNoContent
+
+
+    }
 
 }
