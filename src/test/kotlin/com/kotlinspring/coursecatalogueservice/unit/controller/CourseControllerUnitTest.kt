@@ -10,6 +10,7 @@ import io.mockk.every
 import io.mockk.just
 import io.mockk.runs
 import org.junit.jupiter.api.Assertions
+import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.autoconfigure.web.reactive.AutoConfigureWebTestClient
@@ -71,6 +72,9 @@ class CourseControllerUnitTest {
             .returnResult()
             .responseBody
 
+        println("response : $response")
+        assertEquals("courseDTO.category must not be blank, courseDTO.name must not be blank"
+            , response)
     }
 
 
