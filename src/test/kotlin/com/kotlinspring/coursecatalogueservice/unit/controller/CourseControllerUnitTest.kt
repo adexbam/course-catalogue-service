@@ -53,6 +53,28 @@ class CourseControllerUnitTest {
     }
 
     @Test
+    fun addCourse_validation() {
+        //given
+        val courseDTO = CourseDTO(null, "", "")
+
+        every { courseServiceMock.addCourse(any()) } returns courseDTO(id=1)
+
+        //when
+        val response = webTestClient
+            .post()
+            .uri("/v1/courses")
+            .contentType(MediaType.APPLICATION_JSON)
+            .bodyValue(courseDTO)
+            .exchange()
+            .expectStatus().isBadRequest
+            .expectBody(String::class.java)
+            .returnResult()
+            .responseBody
+
+    }
+
+
+    @Test
     fun retrieveAllCourses() {
 
         every { courseServiceMock.retrieveAllCourses() }.returnsMany(
